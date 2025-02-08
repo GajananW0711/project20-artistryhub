@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ServiceDetail = () => {
   const { serviceId } = useParams(); // Get the serviceId from the URL
@@ -41,55 +42,55 @@ const ServiceDetail = () => {
   }, [serviceId]);
 
   if (loading) {
-    return <p>Loading service details...</p>;
+    return <div className="text-center mt-5"><div className="spinner-border text-primary" role="status"></div> <p className="mt-2 text-muted">Loading service details...</p></div>;
   }
 
   if (error) {
-    return <p className="text-danger">{error}</p>;
+    return <p className="text-danger text-center mt-4">{error}</p>;
   }
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center text-primary mb-4">{serviceDetail?.serviceName}</h2>
+      {/* Service Title */}
+      <h2 className="text-center text-primary fw-bold mb-4">{serviceDetail?.serviceName}</h2>
 
-      <div className="card mb-4">
+      {/* Service Detail Card */}
+      <div className="card shadow-lg mb-4">
         <div className="card-body">
-          <h5 className="card-title">{serviceDetail?.serviceName}</h5>
-          <p>{serviceDetail?.description}</p>
-          <p><strong>Category:</strong> {serviceDetail?.category?.categoryName}</p>
+          <h5 className="card-title fw-bold">{serviceDetail?.serviceName}</h5>
+          <p className="card-text">{serviceDetail?.description}</p>
+          <p className="text-muted"><strong>Category:</strong> {serviceDetail?.category?.categoryName}</p>
         </div>
       </div>
 
       {/* Artists offering this service */}
-      <h3 className="text-primary">Artists Providing This Service</h3>
+      <h3 className="text-primary fw-bold mb-3">Artists Providing This Service</h3>
       <div className="row">
         {artists.length > 0 ? (
           artists.map((artist) => (
-            <div key={artist.artistId} className="col-md-4 mb-4">
-              <div className="card shadow-sm">
+            <div key={artist.artistId} className="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div className="card shadow-sm border-0">
                 <img
                   src={artist.profilePicture}
                   className="card-img-top"
                   alt={`${artist.firstName} ${artist.lastName}`}
-                  style={{ height: "200px", objectFit: "cover" }}
+                  style={{ height: "250px", objectFit: "cover", borderRadius: "10px 10px 0 0" }}
                 />
-                <div className="card-body">
-                  <h5 className="card-title">{artist.firstName} {artist.lastName}</h5>
-                  <p className="card-text">{artist.bio}</p>
-                  <a
-                    href={artist.portfolioLink}
-                    className="btn btn-primary"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <div className="card-body text-center">
+                  <h5 className="card-title fw-bold">{artist.firstName} {artist.lastName}</h5>
+                  <p className="card-text text-muted">{artist.bio}</p>
+                  <Link
+                    to={`/artist/${artist.artistId}`}
+                    className="btn btn-primary btn-sm"
                   >
-                    View Portfolio
-                  </a>
+                    View Full Portfolio
+                  </Link>
                 </div>
               </div>
             </div>
           ))
         ) : (
-          <p>No artists available for this service.</p>
+          <p className="text-muted">No artists available for this service.</p>
         )}
       </div>
     </div>

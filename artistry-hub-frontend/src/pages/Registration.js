@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import Footer from "../components/Footer";
-
-const RegistrationForm = () => {
-  const [role, setRole] = useState("User");
+const Registration = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -13,151 +10,95 @@ const RegistrationForm = () => {
     password: "",
     phone: "",
     location: "",
-  });
-  const [artistData, setArtistData] = useState({
-    portfolio: "",
-    skillTags: "",
-    certifications: "",
+    role: "User",
     bio: "",
-    profilePicture: "",
+    portfolio: ""
   });
-  const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (role === "Artist" && ["portfolio", "skillTags", "certifications", "bio", "profilePicture"].includes(name)) {
-      setArtistData({ ...artistData, [name]: value });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-  };
-
-  const validateForm = () => {
-    let isValid = true;
-    let newErrors = {};
-
-    if (!formData.firstName.match(/^[A-Za-z]+$/)) {
-      newErrors.firstName = "First name can only contain alphabets";
-      isValid = false;
-    }
-    if (!formData.lastName.match(/^[A-Za-z]+$/)) {
-      newErrors.lastName = "Last name can only contain alphabets";
-      isValid = false;
-    }
-    if (!formData.email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/)) {
-      newErrors.email = "Please enter a valid email address";
-      isValid = false;
-    }
-    if (!formData.password.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/)) {
-      newErrors.password = "Password must be at least 8 characters long with letters, numbers, and a special character";
-      isValid = false;
-    }
-    if (!formData.phone.match(/^\d{10}$/)) {
-      newErrors.phone = "Phone number must be exactly 10 digits";
-      isValid = false;
-    }
-
-    setErrors(newErrors);
-    return isValid;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateForm()) return;
-
-    const userPayload = {
-      User: {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        password: formData.password,
-        phone: formData.phone,
-        location: formData.location,
-      },
-      Artist: role === "Artist" ? artistData : null,
-    };
-
+    setMessage("");
+    setError("");
+    
     try {
-      await axios.post("https://localhost:44327/api/User", userPayload);
-      alert("Registration Successful");
-      window.location.href = "/login";
-    } catch (error) {
-      console.error("Registration error:", error);
-      alert("Registration failed. Please try again.");
+      const response = await axios.post("https://localhost:44327/api/Users", formData);
+      setMessage(response.data.message);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        phone: "",
+        location: "",
+        role: "User",
+        bio: "",
+        portfolio: ""
+      });
+    } catch (err) {
+      setError(err.response?.data || "Registration failed");
     }
   };
 
   return (
-    <>
-      <div className="container mt-5">
-        <div className="row justify-content-center">
-          <div className="col-md-6">
-            <h2 className="text-center mb-4">Registration Form</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label className="form-label">First Name:</label>
-                <input type="text" className="form-control" name="firstName" value={formData.firstName} onChange={handleChange} required />
-                {errors.firstName && <p className="text-danger">{errors.firstName}</p>}
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Last Name:</label>
-                <input type="text" className="form-control" name="lastName" value={formData.lastName} onChange={handleChange} required />
-                {errors.lastName && <p className="text-danger">{errors.lastName}</p>}
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Email:</label>
-                <input type="email" className="form-control" name="email" value={formData.email} onChange={handleChange} required />
-                {errors.email && <p className="text-danger">{errors.email}</p>}
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Password:</label>
-                <input type="password" className="form-control" name="password" value={formData.password} onChange={handleChange} required />
-                {errors.password && <p className="text-danger">{errors.password}</p>}
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Phone:</label>
-                <input type="tel" className="form-control" name="phone" value={formData.phone} onChange={handleChange} required />
-                {errors.phone && <p className="text-danger">{errors.phone}</p>}
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Role:</label>
-                <div className="form-check">
-                  <input className="form-check-input" type="radio" name="role" value="User" checked={role === "User"} onChange={() => setRole("User")} />
-                  <label className="form-check-label">User</label>
-                </div>
-                <div className="form-check">
-                  <input className="form-check-input" type="radio" name="role" value="Artist" checked={role === "Artist"} onChange={() => setRole("Artist")} />
-                  <label className="form-check-label">Artist</label>
-                </div>
-              </div>
-
-              {role === "Artist" && (
-                <>
-                  <div className="mb-3">
-                    <label className="form-label">Portfolio:</label>
-                    <input type="url" className="form-control" name="portfolio" value={artistData.portfolio} onChange={handleChange} required />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Skills:</label>
-                    <input type="text" className="form-control" name="skillTags" value={artistData.skillTags} onChange={handleChange} required />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Bio:</label>
-                    <textarea className="form-control" name="bio" value={artistData.bio} onChange={handleChange} rows="3" required />
-                  </div>
-                </>
-              )}
-
-              <button type="submit" className="btn btn-primary w-100">
-                Register
-              </button>
-            </form>
-          </div>
+    <div className="container mt-5">
+      <h2 className="text-center">Register</h2>
+      {message && <div className="alert alert-success">{message}</div>}
+      {error && <div className="alert alert-danger">{error}</div>}
+      <form onSubmit={handleSubmit} className="border p-4 rounded shadow">
+        <div className="mb-3">
+          <label className="form-label">First Name</label>
+          <input type="text" name="firstName" className="form-control" value={formData.firstName} onChange={handleChange} required />
         </div>
-      </div>
-      <Footer />
-    </>
+        <div className="mb-3">
+          <label className="form-label">Last Name</label>
+          <input type="text" name="lastName" className="form-control" value={formData.lastName} onChange={handleChange} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Email</label>
+          <input type="email" name="email" className="form-control" value={formData.email} onChange={handleChange} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Password</label>
+          <input type="password" name="password" className="form-control" value={formData.password} onChange={handleChange} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Phone</label>
+          <input type="text" name="phone" className="form-control" value={formData.phone} onChange={handleChange} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Location</label>
+          <input type="text" name="location" className="form-control" value={formData.location} onChange={handleChange} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Role</label>
+          <select name="role" className="form-select" value={formData.role} onChange={handleChange}>
+            <option value="User">User</option>
+            <option value="Artist">Artist</option>
+          </select>
+        </div>
+        {formData.role === "Artist" && (
+          <>
+            <div className="mb-3">
+              <label className="form-label">Bio</label>
+              <textarea name="bio" className="form-control" value={formData.bio} onChange={handleChange} required></textarea>
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Portfolio Link</label>
+              <input type="url" name="portfolio" className="form-control" value={formData.portfolio} onChange={handleChange} required />
+            </div>
+          </>
+        )}
+        <button type="submit" className="btn btn-primary w-100">Register</button>
+      </form>
+    </div>
   );
 };
 
-export default RegistrationForm;
+export default Registration;

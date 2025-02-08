@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
   const userData = JSON.parse(localStorage.getItem("userData")); // Get user details
-  const role = userData?.role; // Access the correct key "role"
+  const role = userData?.role?.toLowerCase(); // Convert to lowercase for consistency
 
   const handleLogout = () => {
     localStorage.removeItem("userData"); // Clear session data
@@ -25,21 +25,21 @@ const Navbar = () => {
             <li className="nav-item"><Link className="nav-link" to="/services">Services</Link></li>
 
             {/* Role-Based Navigation */}
-            {role === "User" && (
+            {role === "user" && (
               <>
                 <li className="nav-item"><Link className="nav-link" to="/wishlist">Wishlist</Link></li>
                 <li className="nav-item"><Link className="nav-link" to="/my-orders">My Orders</Link></li>
               </>
             )}
 
-            {role === "Artist" && (
+            {role === "artist" && (
               <>
                 <li className="nav-item"><Link className="nav-link" to="/create-event">Create Event</Link></li>
-                <li className="nav-item"><Link className="nav-link" to="/set-availability">Set Availability</Link></li>
+               
               </>
             )}
 
-            {role === "Admin" && (
+            {role === "admin" && (
               <>
                 <li className="nav-item"><Link className="nav-link" to="/users">Users</Link></li>
                 <li className="nav-item"><Link className="nav-link" to="/artists">Artists</Link></li>
@@ -48,6 +48,13 @@ const Navbar = () => {
               </>
             )}
           </ul>
+
+          {/* Show Messages Button for User and Artist */}
+          {(role === "user" || role === "artist") && (
+            <button className="btn btn-outline-light me-3" onClick={() => navigate("/messages")}>
+              <i className="bi bi-chat-dots"></i> Messages
+            </button>
+          )}
 
           {/* Login / Logout Button */}
           {userData ? (
