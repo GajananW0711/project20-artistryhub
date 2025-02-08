@@ -40,6 +40,7 @@ public partial class ArtistryHubContext : DbContext
     public virtual DbSet<Service> Services { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<ChatMessage> Messages { get; set; }
 
     public virtual DbSet<UserFavorite> UserFavorites { get; set; }
 
@@ -211,6 +212,8 @@ public partial class ArtistryHubContext : DbContext
             entity.Property(e => e.Location)
                 .HasMaxLength(100)
                 .HasColumnName("location");
+            entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.EventPrice).HasColumnName("event_price");
 
             entity.HasOne(d => d.Artist).WithMany(p => p.Events)
                 .HasForeignKey(d => d.ArtistId)

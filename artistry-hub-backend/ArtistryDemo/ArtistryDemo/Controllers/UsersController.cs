@@ -17,11 +17,13 @@ namespace ArtistryDemo.Controllers
     {
         private readonly ArtistryHubContext _context;
         private readonly HttpClient _httpClient;
+        private readonly IWebHostEnvironment _env;
 
-        public UsersController(ArtistryHubContext context, HttpClient httpClient)
+        public UsersController(ArtistryHubContext context, HttpClient httpClient, IWebHostEnvironment env)
         {
             _context = context;
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            _env = env;
         }
 
         // GET: api/Users
@@ -115,7 +117,7 @@ namespace ArtistryDemo.Controllers
 
             return user;
         }
-        [HttpGet("{artistId}")]
+        [HttpGet("/artist/{artistId}")]
         public async Task<ActionResult<Artist>> GetArtistById(int artistId)
         {
             var artist = await _context.Artists
@@ -128,6 +130,20 @@ namespace ArtistryDemo.Controllers
 
             return Ok(artist);
         }
+        [HttpGet("/artist/user/{userId}")]
+        public async Task<IActionResult> GetArtistByUserId(int userId)
+        {
+            var artist = await _context.Artists
+                .Where(a => a.UserId == userId)
+                .Select(a => new { artistId = a.ArtistId })  // Select only required fields
+                .FirstOrDefaultAsync();
+
+            if (artist == null)
+                return NotFound(new { message = "Artist not found" });
+
+            return Ok(artist);  // Now returns { "artistId": 2 }
+        }
+
         [HttpGet("/get-artist/{serviceId}")]
         public async Task<ActionResult<List<UserArtistDTO>>> GetArtistByServiceId(int serviceId)
         {
@@ -175,6 +191,50 @@ namespace ArtistryDemo.Controllers
             return Ok(artistDTOs);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> RegisterUser([FromBody] UserDto userDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Check if email already exists
+            if (await _context.Users.AnyAsync(u => u.Email == userDto.Email))
+            {
+                return BadRequest("Email is already registered.");
+            }
+
+            // Create User
+            var user = new User
+            {
+                FirstName = userDto.FirstName,
+                LastName = userDto.LastName,
+                Email = userDto.Email,
+                Password = userDto.Password, // Hash password
+                Phone = userDto.Phone,
+                Location = userDto.Location,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            // If the user is an artist, create artist entry
+            if (userDto.Role == "Artist")
+            {
+                var artist = new Artist
+                {
+                    UserId = user.UserId,
+                    Bio = userDto.Bio,
+                    PortfolioLink = userDto.Portfolio
+                };
+                _context.Artists.Add(artist);
+                await _context.SaveChangesAsync();
+            }
+
+            return Ok(new { message = "Registration Successful" });
+        }
 
 
         // PUT: api/Users/5
@@ -208,28 +268,17 @@ namespace ArtistryDemo.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser([FromBody] UserWithArtistDto userWithArtistDto)
-        {
-            var user = userWithArtistDto.User;
-            var artist = userWithArtistDto.Artist;
 
-            if (artist != null && !string.IsNullOrEmpty(artist.Bio))
-            {
-                artist.UserId = user.UserId;
-                _context.Artists.Add(artist);
-            }
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
-        }
 
 
         // DELETE: api/Users/5
+        [HttpGet("get-users")]
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        {
+            return await _context.Users.ToListAsync();
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {

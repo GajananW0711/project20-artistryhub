@@ -7,6 +7,7 @@ using ArtistryDemo.Models;
 using ArtistryDemo.Services;
 using ArtistryDemo.DTOs;
 
+
 namespace ArtistryDemo.Controllers
 {
     [ApiController]
@@ -74,6 +75,7 @@ namespace ArtistryDemo.Controllers
             return Ok(artistServices);  // Return the artist data as a response
         }
         // POST: api/ArtistServices
+
         [HttpPost]
         public async Task<IActionResult> CheckAndAddService([FromBody] CheckAndAddServiceRequest request)
         {
@@ -82,67 +84,26 @@ namespace ArtistryDemo.Controllers
                 return BadRequest("Invalid request data.");
             }
 
-            // Validate service existence
-            if (!await CheckServiceAvailability(request.ServiceId))
+            var artist = await _context.Artists.FirstOrDefaultAsync(a => a.UserId == request.UserId);
+            if (artist == null)
             {
-                return NotFound("Service not found.");
+                return NotFound("Artist not found.");
             }
 
-            // Retrieve user data from session
-            var userDataString = HttpContext.Session.GetString("UserData");
-            if (string.IsNullOrEmpty(userDataString))
-            {
-                return Unauthorized("User session data is missing or invalid.");
-            }
-
-            dynamic userData;
-            try
-            {
-                userData = JsonConvert.DeserializeObject<dynamic>(userDataString);
-            }
-            catch
-            {
-                return BadRequest("Failed to parse user session data.");
-            }
-
-            if (!int.TryParse((string)userData?.UserId, out int userId))
-            {
-                return BadRequest("Invalid UserId in session data.");
-            }
-
-            // Fetch service details
-            var service = await _artistServicesService.GetServiceAsync(request.ServiceId);
-            if (service == null)
-            {
-                return NotFound("The specified service does not exist.");
-            }
-
-            // Create a new ArtistService object
             var artistService = new ArtistService
             {
-                ArtistId = userId,
-                ServiceId = service.ServiceId,
+                ArtistId = artist.ArtistId,
+                ServiceId = request.ServiceId,
                 Price = request.Price,
                 Availability = request.Availability
             };
 
-            // Save to the database
-            try
-            {
-                _context.ArtistServices.Add(artistService);
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred while saving the artist service. {ex.Message}");
-            }
+            _context.ArtistServices.Add(artistService);
+            await _context.SaveChangesAsync();
 
-            return Ok(new
-            {
-                Message = "Artist Service created successfully.",
-                ArtistService = artistService
-            });
+            return Ok(new { Message = "Artist Service created successfully.", ArtistService = artistService });
         }
+
 
         private async Task<bool> CheckServiceAvailability(int serviceId)
         {

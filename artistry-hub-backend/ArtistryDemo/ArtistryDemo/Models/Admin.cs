@@ -16,4 +16,5 @@ public partial class Admin
     public string Password { get; set; } = null!;
 
     public DateTime? CreatedAt { get; set; }
+   
 }

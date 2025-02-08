@@ -32,4 +32,5 @@ public partial class User
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
 
     public virtual ICollection<UserFavorite> UserFavorites { get; set; } = new List<UserFavorite>();
+    
 }

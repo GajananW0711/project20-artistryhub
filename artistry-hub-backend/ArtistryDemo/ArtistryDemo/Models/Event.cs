@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace ArtistryDemo.Models;
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 public partial class Event
 {
     public int EventId { get; set; }
@@ -19,5 +21,11 @@ public partial class Event
 
     public DateTime? CreatedAt { get; set; }
 
+    public string? Status { get; set; }
+
+     
+    public int? EventPrice { get; set; }
+
     public virtual Artist? Artist { get; set; }
 }
+

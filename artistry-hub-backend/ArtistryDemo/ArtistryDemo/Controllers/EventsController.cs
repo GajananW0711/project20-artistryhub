@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ArtistryDemo.Models;
+using ArtistryDemo.DTOs;
+using System.Text.Json;
 
 namespace ArtistryDemo.Controllers
 {
@@ -40,63 +42,86 @@ namespace ArtistryDemo.Controllers
 
             return @event;
         }
-
-        // PUT: api/Events/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEvent(int id, Event @event)
+        [HttpGet("pending")]
+        public async Task<IActionResult> GetPendingEvents()
         {
-            if (id != @event.EventId)
-            {
-                return BadRequest();
-            }
+            var pendingEvents = await _context.Events
+                .Where(e => e.Status == "Pending")
+                .ToListAsync();
 
-            _context.Entry(@event).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EventExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return Ok(pendingEvents);
         }
+
+        [HttpPut("{eventId}/status")]
+        public async Task<IActionResult> UpdateEventStatus(int eventId, [FromBody] StatusUpdateDto statusUpdate)
+        {
+            var eventToUpdate = await _context.Events.FindAsync(eventId);
+            if (eventToUpdate == null)
+                return NotFound(new { message = "Event not found" });
+            if (statusUpdate.Status != "Approved" && statusUpdate.Status != "Rejected")
+                return BadRequest(new { message = "Invalid status" });
+
+            eventToUpdate.Status = statusUpdate.Status;
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = $"Event {statusUpdate.Status.ToLower()} successfully" });
+        }
+
+       
 
         // POST: api/Events
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Event>> PostEvent(Event @event)
+        public async Task<IActionResult> CreateEvent([FromBody] EventDto eventDto)
         {
-            _context.Events.Add(@event);
+            if (eventDto == null)
+                return BadRequest("Invalid event data");
+
+            if (string.IsNullOrWhiteSpace(eventDto.EventDate))
+                return BadRequest("Event date is required");
+
+            if (!DateOnly.TryParse(eventDto.EventDate, out DateOnly parsedDate))
+                return BadRequest("Invalid date format. Use YYYY-MM-DD.");
+
+            // No need to find artist by userId. Use artistId directly from eventDto.
+            
+           
+
+            var newEvent = new Event
+            {
+                ArtistId = eventDto.UserId,  // Use artistId directly
+                EventName = eventDto.EventName,
+                Description = eventDto.Description,
+                EventDate = parsedDate,
+                Location = eventDto.Location,
+                EventPrice = eventDto.EventPrice,
+                Status = "Pending",
+                CreatedAt = DateTime.Now
+            };
+
+            _context.Events.Add(newEvent);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetEvent", new { id = @event.EventId }, @event);
+            return Ok(new { message = "Event created successfully", eventId = newEvent.EventId });
         }
 
-        // DELETE: api/Events/5
+
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvent(int id)
         {
-            var @event = await _context.Events.FindAsync(id);
-            if (@event == null)
+            var eventItem = await _context.Events.FindAsync(id);
+
+            if (eventItem == null)
             {
-                return NotFound();
+                return NotFound(new { message = "Event not found" });
             }
 
-            _context.Events.Remove(@event);
+            _context.Events.Remove(eventItem);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(new { message = "Event deleted successfully" });
         }
 
         private bool EventExists(int id)

@@ -46,13 +46,16 @@ namespace ArtistryDemo
             // Set up CORS policy for React frontend
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowReactApp", builder =>
+                options.AddPolicy("AllowReactApp", policy =>
                 {
-                    builder.WithOrigins("http://localhost:3000")
-                           .AllowAnyHeader()
-                           .AllowAnyMethod();
+                    policy.WithOrigins("http://localhost:3000") 
+                          .AllowCredentials() 
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
                 });
             });
+
+            builder.Services.AddSignalR();
 
             // Build the app
             var app = builder.Build();
@@ -74,8 +77,10 @@ namespace ArtistryDemo
 
             app.UseRouting();
 
-           
-           
+            app.UseAuthentication(); // Make sure authentication middleware is used
+            app.UseAuthorization();  // Make sure authorization middleware is used
+
+
 
             app.UseHttpsRedirection();
             app.UseAuthorization();
@@ -83,6 +88,8 @@ namespace ArtistryDemo
 
             // Map the controllers
             app.MapControllers();
+            app.MapHub<ChatHub>("/chatHub");
+
 
             // Run the app
             app.Run();
