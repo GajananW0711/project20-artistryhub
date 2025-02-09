@@ -46,14 +46,14 @@ namespace ArtistryDemo
             // Set up CORS policy for React frontend
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowReactApp", policy =>
+                options.AddPolicy("AllowAll", policy =>
                 {
-                    policy.WithOrigins("http://localhost:3000") 
-                          .AllowCredentials() 
+                    policy.AllowAnyOrigin()
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });
             });
+
 
             builder.Services.AddSignalR();
 
@@ -84,7 +84,7 @@ namespace ArtistryDemo
 
             app.UseHttpsRedirection();
             app.UseAuthorization();
-            app.UseCors("AllowReactApp");
+            app.UseCors("AllowAll");
 
             // Map the controllers
             app.MapControllers();

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AhVOWV9qFbQ=",
+  "dgSpecHash": "LdYJx3BrSEM=",
   "success": true,
-  "projectFilePath": "E:\\DemoArtistry\\ArtistryDemo\\ArtistryDemo\\ArtistryDemo.csproj",
+  "projectFilePath": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\ArtistryDemo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

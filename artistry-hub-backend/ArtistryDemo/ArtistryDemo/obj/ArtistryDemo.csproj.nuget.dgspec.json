@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\DemoArtistry\\ArtistryDemo\\ArtistryDemo\\ArtistryDemo.csproj": {}
+    "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\ArtistryDemo.csproj": {}
   },
   "projects": {
-    "E:\\DemoArtistry\\ArtistryDemo\\ArtistryDemo\\ArtistryDemo.csproj": {
+    "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\ArtistryDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\DemoArtistry\\ArtistryDemo\\ArtistryDemo\\ArtistryDemo.csproj",
+        "projectUniqueName": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\ArtistryDemo.csproj",
         "projectName": "ArtistryDemo",
-        "projectPath": "E:\\DemoArtistry\\ArtistryDemo\\ArtistryDemo\\ArtistryDemo.csproj",
+        "projectPath": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\ArtistryDemo.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "E:\\DemoArtistry\\ArtistryDemo\\ArtistryDemo\\obj\\",
+        "outputPath": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
