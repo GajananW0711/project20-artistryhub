@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F8FA49ED-51AC-41BF-A2CF-9AF7C3F993EC}|ArtistryDemo\\ArtistryDemo.csproj|e:\\project20-artistryhub\\artistry-hub-backend\\artistrydemo\\artistrydemo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{F8FA49ED-51AC-41BF-A2CF-9AF7C3F993EC}|ArtistryDemo\\ArtistryDemo.csproj|solutionrelative:artistrydemo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F8FA49ED-51AC-41BF-A2CF-9AF7C3F993EC}|ArtistryDemo\\ArtistryDemo.csproj|e:\\project20-artistryhub\\artistry-hub-backend\\artistrydemo\\artistrydemo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8FA49ED-51AC-41BF-A2CF-9AF7C3F993EC}|ArtistryDemo\\ArtistryDemo.csproj|solutionrelative:artistrydemo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FA49ED-51AC-41BF-A2CF-9AF7C3F993EC}|ArtistryDemo\\ArtistryDemo.csproj|e:\\project20-artistryhub\\artistry-hub-backend\\artistrydemo\\artistrydemo\\dtos\\statusupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FA49ED-51AC-41BF-A2CF-9AF7C3F993EC}|ArtistryDemo\\ArtistryDemo.csproj|solutionrelative:artistrydemo\\dtos\\statusupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FA49ED-51AC-41BF-A2CF-9AF7C3F993EC}|ArtistryDemo\\ArtistryDemo.csproj|e:\\project20-artistryhub\\artistry-hub-backend\\artistrydemo\\artistrydemo\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8FA49ED-51AC-41BF-A2CF-9AF7C3F993EC}|ArtistryDemo\\ArtistryDemo.csproj|solutionrelative:artistrydemo\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8FA49ED-51AC-41BF-A2CF-9AF7C3F993EC}|ArtistryDemo\\ArtistryDemo.csproj|e:\\project20-artistryhub\\artistry-hub-backend\\artistrydemo\\artistrydemo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F8FA49ED-51AC-41BF-A2CF-9AF7C3F993EC}|ArtistryDemo\\ArtistryDemo.csproj|solutionrelative:artistrydemo\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F8FA49ED-51AC-41BF-A2CF-9AF7C3F993EC}|ArtistryDemo\\ArtistryDemo.csproj|e:\\project20-artistryhub\\artistry-hub-backend\\artistrydemo\\artistrydemo\\controllers\\artistservicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -67,36 +75,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "StatusUpdateDto.cs",
+              "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\DTOs\\StatusUpdateDto.cs",
+              "RelativeDocumentMoniker": "ArtistryDemo\\DTOs\\StatusUpdateDto.cs",
+              "ToolTip": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\DTOs\\StatusUpdateDto.cs",
+              "RelativeToolTip": "ArtistryDemo\\DTOs\\StatusUpdateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T13:06:10.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ChatController.cs",
+              "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Controllers\\ChatController.cs",
+              "RelativeDocumentMoniker": "ArtistryDemo\\Controllers\\ChatController.cs",
+              "ToolTip": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Controllers\\ChatController.cs",
+              "RelativeToolTip": "ArtistryDemo\\Controllers\\ChatController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T13:03:44.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "appsettings.json",
               "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\appsettings.json",
               "RelativeDocumentMoniker": "ArtistryDemo\\appsettings.json",
               "ToolTip": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\appsettings.json",
               "RelativeToolTip": "ArtistryDemo\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-02-09T11:55:41.813Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CheckAndAddServiceRequest.cs",
-              "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\DTOs\\CheckAndAddServiceRequest.cs",
-              "RelativeDocumentMoniker": "ArtistryDemo\\DTOs\\CheckAndAddServiceRequest.cs",
-              "ToolTip": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\DTOs\\CheckAndAddServiceRequest.cs",
-              "RelativeToolTip": "ArtistryDemo\\DTOs\\CheckAndAddServiceRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-07T16:20:30.529Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "EventsController.cs",
               "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Controllers\\EventsController.cs",
               "RelativeDocumentMoniker": "ArtistryDemo\\Controllers\\EventsController.cs",
@@ -108,7 +130,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Program.cs",
+              "RelativeDocumentMoniker": "ArtistryDemo\\Program.cs",
+              "ToolTip": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Program.cs",
+              "RelativeToolTip": "ArtistryDemo\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-07T14:19:48.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "CheckAndAddServiceRequest.cs",
+              "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\DTOs\\CheckAndAddServiceRequest.cs",
+              "RelativeDocumentMoniker": "ArtistryDemo\\DTOs\\CheckAndAddServiceRequest.cs",
+              "ToolTip": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\DTOs\\CheckAndAddServiceRequest.cs",
+              "RelativeToolTip": "ArtistryDemo\\DTOs\\CheckAndAddServiceRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-07T16:20:30.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "dbo.artist_services.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/ArtistryHub/True/SqlTable/dbo.artist_services.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/ArtistryHub/True/SqlTable/dbo.artist_services.sql",
@@ -117,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ArtistServicesController.cs",
               "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Controllers\\ArtistServicesController.cs",
               "RelativeDocumentMoniker": "ArtistryDemo\\Controllers\\ArtistServicesController.cs",
@@ -129,19 +176,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Program.cs",
-              "RelativeDocumentMoniker": "ArtistryDemo\\Program.cs",
-              "ToolTip": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Program.cs",
-              "RelativeToolTip": "ArtistryDemo\\Program.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAQwCIAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-07T14:19:48.253Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "ILoginService.cs",
               "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Services\\ILoginService.cs",
               "RelativeDocumentMoniker": "ArtistryDemo\\Services\\ILoginService.cs",
@@ -153,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "LoginController.cs",
               "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Controllers\\LoginController.cs",
               "RelativeDocumentMoniker": "ArtistryDemo\\Controllers\\LoginController.cs",
@@ -165,7 +200,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "User.cs",
               "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Models\\User.cs",
               "RelativeDocumentMoniker": "ArtistryDemo\\Models\\User.cs",
@@ -177,7 +212,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "UsersController.cs",
               "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "ArtistryDemo\\Controllers\\UsersController.cs",
@@ -189,7 +224,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "dbo.users.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/ArtistryHub/True/SqlTable/dbo.users.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/ArtistryHub/True/SqlTable/dbo.users.sql",
@@ -198,7 +233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "dbo.artists.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/ArtistryHub/True/SqlTable/dbo.artists.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/ArtistryHub/True/SqlTable/dbo.artists.sql",
@@ -207,7 +242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "LoginService.cs",
               "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Services\\LoginService.cs",
               "RelativeDocumentMoniker": "ArtistryDemo\\Services\\LoginService.cs",
@@ -219,7 +254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "Admin.cs",
               "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\Models\\Admin.cs",
               "RelativeDocumentMoniker": "ArtistryDemo\\Models\\Admin.cs",
@@ -231,7 +266,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "UserDto.cs",
               "DocumentMoniker": "E:\\project20-artistryhub\\artistry-hub-backend\\ArtistryDemo\\ArtistryDemo\\DTOs\\UserDto.cs",
               "RelativeDocumentMoniker": "ArtistryDemo\\DTOs\\UserDto.cs",

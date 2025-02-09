@@ -78,7 +78,7 @@ namespace ArtistryDemo.Controllers
             var services = new List<Service>();
 
             // Send a GET request to fetch services related to the artist
-            var response = await _httpClient.GetAsync($"https://localhost:44327/api/ArtistServices/{artistId}");
+            var response = await _httpClient.GetAsync($"http://51.20.56.125:44327/api/ArtistServices/{artistId}");
 
             if (response.IsSuccessStatusCode)
             {
