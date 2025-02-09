@@ -24,7 +24,7 @@ const Messages = () => {
       const userId = userData.userId;
 
       const response = await axios.get(
-        `https://localhost:44327/api/chat/GetMessages?userId=${userId}`,
+        `http://51.20.56.125:44327/api/chat/GetMessages?userId=${userId}`,
         {
           withCredentials: true,
         }
@@ -60,7 +60,7 @@ const Messages = () => {
       console.log("Fetching chat history for user:", userId, "and sender:", senderId);
 
       const response = await axios.get(
-        `https://localhost:44327/api/chat/history/${userId}/${senderId}`,
+        `http://51.20.56.125:44327/api/chat/history/${userId}/${senderId}`,
         {
           withCredentials: true,
         }
@@ -97,7 +97,7 @@ const Messages = () => {
       };
 
       const response = await axios.post(
-        "https://localhost:44327/api/chat/send",
+        "http://51.20.56.125:44327/api/chat/send",
         message,
         {
           withCredentials: true,

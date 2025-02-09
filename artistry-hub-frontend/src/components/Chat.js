@@ -21,7 +21,7 @@ const Chat = () => {
         }
 
         const newConnection = new signalR.HubConnectionBuilder()
-            .withUrl("http://localhost:5000/chatHub")
+            .withUrl("http://51.20.56.125:44327/chatHub")
             .withAutomaticReconnect()
             .build();
 
@@ -36,7 +36,7 @@ const Chat = () => {
         setConnection(newConnection);
 
         // Load chat history
-        axios.get(`http://localhost:5000/api/chat/history/${userId}/${artistId}`)
+        axios.get(`http://51.20.56.125:44327/api/chat/history/${userId}/${artistId}`)
             .then(response => setMessages(response.data))
             .catch(error => console.error(error));
 
@@ -51,7 +51,7 @@ const Chat = () => {
         const newMessage = { senderId: userId, receiverId: artistId, messageText: message };
 
         // Save message to DB
-        await axios.post("https://localhost:44327/api/chat/send", newMessage);
+        await axios.post("http://51.20.56.125:44327/api/chat/send", newMessage);
 
         setMessage("");
     };

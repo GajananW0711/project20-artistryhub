@@ -15,7 +15,7 @@ const AllEvents = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get("https://localhost:44327/api/Events");
+        const response = await axios.get("http://51.20.56.125:44327/api/Events");
         if (response.data && Array.isArray(response.data.$values)) {
           const approvedEvents = response.data.$values.filter((event) => event.status === "Approved");
           setEvents(approvedEvents);
@@ -37,7 +37,7 @@ const AllEvents = () => {
     if (!window.confirm("Are you sure you want to delete this event? This action cannot be undone.")) return;
 
     try {
-      await axios.delete(`https://localhost:44327/api/Events/${eventId}`);
+      await axios.delete(`http://51.20.56.125:44327/api/Events/${eventId}`);
       setEvents((prevEvents) => prevEvents.filter((event) => event.eventId !== eventId));
     } catch (error) {
       alert("Failed to delete the event. Please try again.");

@@ -20,7 +20,7 @@ const Services = () => {
 
   useEffect(() => {
     axios
-      .get("https://localhost:44327/api/services-for-user/get-all-services")
+      .get("http://51.20.56.125:44327/api/services-for-user/get-all-services")
       .then((response) => {
         if (response.data && Array.isArray(response.data.$values)) {
           setServices(response.data.$values);
@@ -38,7 +38,7 @@ const Services = () => {
       fetchArtistId(userData.userId);
 
       axios
-        .get(`https://localhost:44327/api/ArtistServices/${userData.userId}`)
+        .get(`http://51.20.56.125:44327/api/ArtistServices/${userData.userId}`)
         .then((response) => {
           if (response.data && Array.isArray(response.data.$values)) {
             setArtistServices(response.data.$values);
@@ -54,7 +54,7 @@ const Services = () => {
 
   const fetchArtistId = async (userId) => {
     try {
-      const response = await fetch(`https://localhost:44327/artist/user/${userId}`);
+      const response = await fetch(`http://51.20.56.125:44327/artist/user/${userId}`);
       if (!response.ok) throw new Error("Artist not found");
       const data = await response.json();
       setArtistId(data.artistId);
@@ -71,7 +71,7 @@ const Services = () => {
     }
 
     try {
-      const response = await axios.post("https://localhost:44327/api/ArtistServices", {
+      const response = await axios.post("http://51.20.56.125:44327/api/ArtistServices", {
         userId: artistId,
         serviceId: newService.serviceId,
         price: newService.price,

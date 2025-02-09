@@ -16,7 +16,7 @@ const ArtistDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`https://localhost:44327/api/artists/${artistId}`)
+      .get(`http://51.20.56.125:44327/api/artists/${artistId}`)
       .then((response) => {
         // Transform the data to properly extract portfolios from "$values"
         const artistData = {
@@ -45,7 +45,7 @@ const ArtistDetails = () => {
               <div className="card-body text-center">
                 {/* Profile Picture */}
                 <img
-                  src={`https://localhost:44327/images/${artist.profilePicture}`}
+                  src={`http://51.20.56.125:44327/images/${artist.profilePicture}`}
                   alt="Artist"
                   className="rounded-circle img-fluid shadow"
                   style={{ height: "200px", width: "200px", objectFit: "cover" }}

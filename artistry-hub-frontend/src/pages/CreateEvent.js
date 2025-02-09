@@ -18,7 +18,7 @@ const CreateEvent = () => {
 
   const fetchArtistId = async (userId) => {
     try {
-      const response = await fetch(`https://localhost:44327/artist/user/${userId}`);
+      const response = await fetch(`http://51.20.56.125:44327/artist/user/${userId}`);
       if (!response.ok) {
         throw new Error("Artist not found");
       }
@@ -58,7 +58,7 @@ const CreateEvent = () => {
     };
 
     try {
-      const response = await fetch("https://localhost:44327/api/Events", {
+      const response = await fetch("http://51.20.56.125:44327/api/Events", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(eventPayload),

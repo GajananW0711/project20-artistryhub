@@ -16,7 +16,7 @@ const EventDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`https://localhost:44327/api/Events/${eventId}`)
+      .get(`http://51.20.56.125:44327/api/Events/${eventId}`)
       .then((response) => {
         if (response.data) {
           setEvent(response.data);
@@ -31,7 +31,7 @@ const EventDetail = () => {
   useEffect(() => {
     if (!event?.artistId) return;
     axios
-      .get(`https://localhost:44327/api/artists/${event.artistId}`)
+      .get(`http://51.20.56.125:44327/api/artists/${event.artistId}`)
       .then((response) => {
         // Transform the data to properly extract portfolios from "$values"
         const artistData = {
@@ -72,7 +72,7 @@ const EventDetail = () => {
       description: `Booking for ${event.eventName}`,
       handler: function (response) {
         axios
-          .post("https://localhost:44327/api/BookEvent", {
+          .post("http://51.20.56.125:44327/api/BookEvent", {
             userId: userData?.userId || "Guest",
             artistId: event.artistId,
             eventId: eventId,

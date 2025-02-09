@@ -6,21 +6,21 @@ const EventApproval = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    fetch("https://localhost:44327/api/Events/pending")
+    fetch("http://51.20.56.125:44327/api/Events/pending")
       .then((res) => res.json())
       .then((data) => setEvents(data.$values || []))
       .catch((err) => console.error("Error fetching events:", err));
   }, []);
 
   const handleEventClick = (event) => {
-    fetch(`https://localhost:44327/api/Events/${event.eventId}`)
+    fetch(`http://51.20.56.125:44327/api/Events/${event.eventId}`)
       .then((res) => res.json())
       .then((data) => setSelectedEvent(data))
       .catch((err) => console.error("Error fetching event details:", err));
   };
 
   const updateEventStatus = (eventId, status) => {
-    fetch(`https://localhost:44327/api/Events/${eventId}/status`, {
+    fetch(`http://51.20.56.125:44327/api/Events/${eventId}/status`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),

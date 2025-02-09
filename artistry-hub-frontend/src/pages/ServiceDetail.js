@@ -13,7 +13,7 @@ const ServiceDetail = () => {
   // Fetch service details
   useEffect(() => {
     axios
-      .get(`https://localhost:44327/api/services-for-user/get-service-by-id/${serviceId}`)
+      .get(`http://51.20.56.125:44327/api/services-for-user/get-service-by-id/${serviceId}`)
       .then((response) => {
         setServiceDetail(response.data);
       })
@@ -28,7 +28,7 @@ const ServiceDetail = () => {
   // Fetch artists related to this service
   useEffect(() => {
     axios
-      .get(`https://localhost:44327/get-artist/${serviceId}`)
+      .get(`http://51.20.56.125:44327/get-artist/${serviceId}`)
       .then((response) => {
         if (response.data && Array.isArray(response.data.$values)) {
           setArtists(response.data.$values); // Extract artists from $values array

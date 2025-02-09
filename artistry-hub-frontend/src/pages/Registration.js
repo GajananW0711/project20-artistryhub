@@ -28,7 +28,7 @@ const Registration = () => {
     setError("");
     
     try {
-      const response = await axios.post("https://localhost:44327/api/Users", formData);
+      const response = await axios.post("http://51.20.56.125:44327/api/Users", formData);
       setMessage(response.data.message);
       setFormData({
         firstName: "",

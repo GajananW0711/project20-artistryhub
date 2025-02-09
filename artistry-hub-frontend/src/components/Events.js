@@ -9,7 +9,7 @@ const Events = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/Events") // Adjust backend URL if needed
+      .get("http://51.20.56.125:44327/api/Events") // Adjust backend URL if needed
       .then((response) => {
         setEvents(response.data);
         setLoading(false);

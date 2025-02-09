@@ -5,7 +5,7 @@ const UsersTable = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch("https://localhost:44327/api/Users/get-users")
+        fetch("http://51.20.56.125:44327/api/Users/get-users")
             .then(response => response.json())
             .then(data => {
                 if (Array.isArray(data)) {
@@ -21,7 +21,7 @@ const UsersTable = () => {
     }, []);
     
     const deleteUser = (userId) => {
-        fetch(`https://localhost:44327/api/Users/${userId}`, {
+        fetch(`http://51.20.56.125:44327/api/Users/${userId}`, {
             method: "DELETE",
         })
         .then(response => {

@@ -11,7 +11,7 @@ const Artists = () => {
 
   const fetchArtists = async () => {
     try {
-      const response = await axios.get("https://localhost:44327/api/artists");
+      const response = await axios.get("http://51.20.56.125:44327/api/artists");
       console.log("API Response:", response.data);
       setArtists(response.data.$values || []);
     } catch (error) {
@@ -21,7 +21,7 @@ const Artists = () => {
 
   const deleteArtist = async (userId) => {
     try {
-      await axios.delete(`https://localhost:44327/api/artists/${userId}`);
+      await axios.delete(`http://51.20.56.125:44327/api/artists/${userId}`);
       setArtists(artists.filter(artist => artist.userId !== userId));
     } catch (error) {
       console.error("Error deleting artist", error);

@@ -10,7 +10,7 @@ const FindArtist = () => {
 
   useEffect(() => {
     axios
-      .get("https://localhost:44327/api/Users") // Adjust backend URL if needed
+      .get("http://51.20.56.125:44327/api/Users") // Adjust backend URL if needed
       .then((response) => {
         console.log("API Response (Artists):", response.data); // Log the response to check its structure
         if (response.data && Array.isArray(response.data.$values)) {
